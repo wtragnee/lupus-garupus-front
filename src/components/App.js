@@ -1,16 +1,19 @@
-import { Component } from 'react';
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // const Nav = require('./Nav');
+import Home from './Home';
 
-class App extends Component {
+// Example: https://github.com/tylermcginnis/react-fundamentals/tree/hosting/app/components
+
+class App extends React.PureComponent {
   render() {
     return (
       <BrowserRouter>
-        <div className='container'>
+        <div className="container">
           {/* <Nav /> */}
           <Switch>
-            <Route render={() => (<p>Not Found</p>)} />
+            <Route path='/home' component={Home} />
+            <Route render={() => <p>Not Found</p>} />
           </Switch>
         </div>
       </BrowserRouter>
