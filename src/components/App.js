@@ -12,8 +12,8 @@ class App extends React.PureComponent {
         <div className="container">
           {/* <Nav /> */}
           <Switch>
-            <Route path='/home' component={Home} />
-            <Route render={() => <p>Not Found</p>} />
+            {/* <Route path="/home" component={Home} /> */}
+            <Route component={Home} />
           </Switch>
         </div>
       </BrowserRouter>
