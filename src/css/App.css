@@ -1,4 +1,7 @@
-.home-container .row {
-  margin-bottom: 1em;
+.row-mar-top-1 {
+  margin-top: 1em;
+}
+
+.row-mar-btm-1 {
   margin-top: 1em;
 }
