@@ -23,7 +23,7 @@ class CollapseTest extends React.Component {
           </Button>
         </div>
         <div>
-          <Collapse show={this.state.opened}>
+          <Collapse in={this.state.opened}>
             <div className="alert alert-danger">Opened</div>
           </Collapse>
         </div>

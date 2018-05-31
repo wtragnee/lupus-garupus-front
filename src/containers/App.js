@@ -2,7 +2,7 @@ import React from 'react';
 // const Nav = require('./Nav');
 import CollapseTest from '../components/collapse';
 
-class App extends React.PureComponent {
+class App extends React.Component {
   render() {
     return <CollapseTest />;
   }
