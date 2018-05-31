@@ -1,5 +1,5 @@
 import React from 'react';
-import { Collapse, Button } from 'react-bootstrap';
+import { Collapse, Button, Row } from 'react-bootstrap';
 
 const DEFAULT_CLIENT_MESSAGE = 'An error occured, please try again';
 
@@ -7,7 +7,6 @@ class ErrorLabel extends React.PureComponent {
   constructor({ error }) {
     super();
     this.clientMessage = error.clientMessage || DEFAULT_CLIENT_MESSAGE;
-    this.message = error.message;
     this.stack = error.stack;
 
     this.state = {
@@ -15,18 +14,27 @@ class ErrorLabel extends React.PureComponent {
     };
   }
 
+  handleClick() {
+    this.setState({
+      opened: !this.state.opened
+    });
+  }
+
   render() {
     return (
-      <div>
-        <div className="row-mar-top-1 row-mar-btm-1 alert alert-danger">
-          <Button onClick={this.handle({ opened: !this.state.opened })}>
-            {this.clientMessage}
-          </Button>
+      <div className="error-container row-mar-btm-1 row-mar-top-1">
+        <div className="alert alert-danger">
+          <Row>
+            <div className="pull-left">{this.clientMessage}</div>
+            <div className="pull-right">
+              <Button bsStyle="danger" onClick={() => this.handleClick()}>
+                See more
+              </Button>
+            </div>
+          </Row>
         </div>
         <Collapse in={this.state.opened}>
-          <div className="row-mar-top-1 row-mar-btm-1 alert alert-danger">
-            {this.stack}
-          </div>
+          <div className="alert alert-danger">{this.stack}</div>
         </Collapse>
       </div>
     );

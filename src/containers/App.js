@@ -1,10 +1,21 @@
 import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Home from './Home';
+import CreateGame from './CreateGame';
 // const Nav = require('./Nav');
-import CollapseTest from '../components/collapse';
 
 class App extends React.Component {
   render() {
-    return <CollapseTest />;
+    return (
+      <BrowserRouter>
+        <div className="container">
+          <Switch>
+            <Route path="/create-game" component={CreateGame} />
+            <Route component={Home} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    );
   }
 }
 
