@@ -1,0 +1,8 @@
+{
+  "request": {
+    "json": true
+  },
+  "retry": {
+    "throw_original": true
+  }
+}
