@@ -2,12 +2,18 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import _ from 'lodash';
 
+import RequestManager from '../helper/RequestManager';
+import ErrorLabel from '../components/error';
+
 class CreateGame extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: '',
+      submitting: false,
+      error: undefined
     };
+    this._rp = new RequestManager({});
   }
 
   handleChange(event) {
@@ -18,12 +24,32 @@ class CreateGame extends React.PureComponent {
 
   handleSubmit(event) {
     event.preventDefault();
-    // eslint-disable-next-line react/prop-types
-    this.props.history.push('/thank-you');
+    this.setState(
+      {
+        submitting: true
+      },
+      () =>
+        this._rp
+          .get({ uri: '/ping' })
+          .then(({ pong }) => {
+            throw new Error('Fuck this shit');
+            // eslint-disable-next-line react/prop-types
+            this.props.history.push(`/game?token=${pong}`);
+          })
+          .catch(err => {
+            this.setState({
+              submitting: false,
+              error: {
+                message: err.message,
+                stack: err.stack
+              }
+            });
+          })
+    );
   }
 
   isFormValid() {
-    return this.isPseudoValid();
+    return this.isPseudoValid() && !this.state.submitting;
   }
 
   isPseudoValid() {
@@ -57,6 +83,7 @@ class CreateGame extends React.PureComponent {
               Create!
             </Button>
           </div>
+          {this.state.error && <ErrorLabel error={this.state.error} />}
         </div>
       </form>
     );
