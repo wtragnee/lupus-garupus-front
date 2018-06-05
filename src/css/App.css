@@ -5,3 +5,11 @@
 .row-mar-btm-1 {
   margin-top: 1em;
 }
+
+.error-container .pull-left {
+  margin-left: 2em;
+}
+
+.error-container .pull-right {
+  margin-right: 2em;
+}

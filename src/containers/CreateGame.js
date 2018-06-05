@@ -32,7 +32,6 @@ class CreateGame extends React.PureComponent {
         this._rp
           .get({ uri: '/ping' })
           .then(({ pong }) => {
-            throw new Error('Fuck this shit');
             // eslint-disable-next-line react/prop-types
             this.props.history.push(`/game?token=${pong}`);
           })
